@@ -1,4 +1,4 @@
-from inp.input import select_analysis, get_file_path, read_csv, choose_vars, filter_nums
+from inp.input import select_analysis, get_file_path, read_csv, choose_vars, filter_nums, show_cols
 from jstat.model import Model
 from jstat.da import DiscriminateAnalysis
 from jstat.efa import ExploratoryFactorAnalysis
@@ -26,7 +26,7 @@ def main() -> None:
 
     df = filter_nums(read_csv(p))
 
-    print(df.columns)
+    show_cols(df)
 
     x, y = choose_vars()
 

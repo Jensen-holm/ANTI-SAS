@@ -65,6 +65,12 @@ def filter_nums(df: pd.DataFrame) -> pd.DataFrame:
     return df.select_dtypes(include=numerics)
 
 
+def show_cols(df: pd.DataFrame) -> None:
+    print("Columns:")
+    for c in df.columns:
+        print(c)
+
+
 def choose_vars():
     x = input("Enter the independent variable -> ")
     y = input("Enter the dependent variable -> ")
