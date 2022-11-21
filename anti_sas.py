@@ -1,11 +1,8 @@
-from inp.input import Prompt
+from inp.input import select_analysis
 
 
-def main():
-
-    Prompt().select_analysis()
-
-    return
+def main() -> None:
+    a: str = select_analysis()
 
 
 if __name__ == "__main__":
