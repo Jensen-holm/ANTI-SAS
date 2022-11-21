@@ -1,6 +1,12 @@
 from inp.input import select_analysis
 
 
+models: dict[str, stat.Model] = {
+    "Discriminate Analysis": stat.DiscriminateAnalysis(),
+}
+
+
+
 def main() -> None:
     a: str = select_analysis()
 

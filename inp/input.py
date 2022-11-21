@@ -1,4 +1,13 @@
 from out.out import printc
+import pandas as pd
+import os
+
+
+def input_filter(s: str) -> None:
+    if s == ":q" or s == ":quit":
+        exit()
+    if s == ":h" or s == ":help":
+        help()
 
 
 analyses: dict[str, str] = {
@@ -22,6 +31,24 @@ def select_analysis() -> str:
     while True:
         print(p, end=" ")
         i = input()
+        input_filter(i)
         if i in analyses.keys():
             return analyses[i]
         print("\nInvalid input, try again")
+
+
+def get_file_path() -> str:
+    while True:
+        p: str = input("Enter the file path to a csv -> ")
+        input_filter(p)
+        if file_exists(p) and is_csv(p):
+            return p
+        print("File does not exist or is not a csv file, try again")
+
+
+def is_csv(path: str) -> bool:
+    return True if path.endswith(".csv") else False
+
+
+def file_exists(path: str) -> bool:
+    return True if os.path.exists(path) else False
