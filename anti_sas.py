@@ -1,4 +1,6 @@
-from inp.input import select_analysis, get_file_path
+from inp.input import select_analysis, get_file_path, read_csv
+import pandas as pd
+from out.out import printc
 from jstat.model import Model
 from jstat.da import DiscriminateAnalysis
 from jstat.efa import ExploratoryFactorAnalysis
@@ -20,7 +22,11 @@ def main() -> None:
     a: str = select_analysis()
     m: Model = models[a]
 
-    print(m)
+    p: str = get_file_path()
+
+    df: pd.DataFrame = read_csv(p)
+
+    print(df.head())
 
 
 if __name__ == "__main__":

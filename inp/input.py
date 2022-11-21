@@ -39,7 +39,7 @@ def select_analysis() -> str:
 
 def get_file_path() -> str:
     while True:
-        p: str = input("Enter the file path to a csv -> ")
+        p: str = input("Enter the file path to a csv -> ").strip()
         input_filter(p)
         if file_exists(p) and is_csv(p):
             return p
@@ -52,3 +52,7 @@ def is_csv(path: str) -> bool:
 
 def file_exists(path: str) -> bool:
     return True if os.path.exists(path) else False
+
+
+def read_csv(path: str) -> pd.DataFrame:
+    return pd.read_csv(path)
