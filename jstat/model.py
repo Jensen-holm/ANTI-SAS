@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import numpy as np
 
 
 @dataclass
@@ -16,3 +17,4 @@ class Model:
 
     def __hash__(self) -> int:
         return hash((self.name, self.description))
+

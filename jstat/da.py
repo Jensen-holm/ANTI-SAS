@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from model import Model
+from jstat.model import Model
 
 
 @dataclass
