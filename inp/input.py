@@ -5,7 +5,8 @@ analyses: dict[str, str] = {
     "1": "Discriminate Analysis",
     "2": "Exploratory Factor Analysis",
     "3": "Simple Linear Regression",
-    "4": "Multiple Linear Regression"
+    "4": "Multiple Linear Regression",
+    "5": "Cluster Analysis",
 }
 
 
@@ -17,7 +18,7 @@ def show_options() -> None:
 
 def select_analysis() -> str:
     show_options()
-    p: str = "Select a model"
+    p: str = "Select a model -> "
     while True:
         print(p, end=" ")
         i = input()
