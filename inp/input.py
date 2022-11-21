@@ -55,4 +55,17 @@ def file_exists(path: str) -> bool:
 
 
 def read_csv(path: str) -> pd.DataFrame:
-    return pd.read_csv(path)
+    df = pd.read_csv(path)
+    df.apply(pd.to_numeric, errors="ignore")
+    return df
+
+
+def filter_nums(df: pd.DataFrame) -> pd.DataFrame:
+    numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
+    return df.select_dtypes(include=numerics)
+
+
+def choose_vars():
+    x = input("Enter the independent variable -> ")
+    y = input("Enter the dependent variable -> ")
+    return x, y

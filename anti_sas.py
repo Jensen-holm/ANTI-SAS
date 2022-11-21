@@ -1,12 +1,12 @@
-from inp.input import select_analysis, get_file_path, read_csv
-import pandas as pd
-from out.out import printc
+from inp.input import select_analysis, get_file_path, read_csv, choose_vars, filter_nums
 from jstat.model import Model
 from jstat.da import DiscriminateAnalysis
 from jstat.efa import ExploratoryFactorAnalysis
 from jstat.slr import SimpleLinearRegression
 from jstat.mlr import MultipleLinearRegression
 from jstat.clust import ClusterAnalysis
+from eda.eda import scatter
+import numpy as np
 
 
 models: dict[str, Model] = {
@@ -24,9 +24,13 @@ def main() -> None:
 
     p: str = get_file_path()
 
-    df: pd.DataFrame = read_csv(p)
+    df = filter_nums(read_csv(p))
 
-    print(df.head())
+    print(df.columns)
+
+    x, y = choose_vars()
+
+    scatter(x, y, df)
 
 
 if __name__ == "__main__":
