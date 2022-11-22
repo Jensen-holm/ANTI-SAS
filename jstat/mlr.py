@@ -10,11 +10,10 @@ class MultipleLinearRegression(Regression):
     description: str = "Describes the relationship between a group of quantitative variables and one response variable"
     explanatory: list[str] = field(default_factory=lambda: [])
 
-
     def set_explanatory(self, exp, df: pd.DataFrame) -> None:
         e: list = []
         for col in exp:
-            if exp in df.columns:
-                e.append(exp)
+            if col in df.columns:
+                e.append(col)
         self.explanatory = e
         assert (len(self.explanatory > 0))

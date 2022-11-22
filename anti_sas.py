@@ -19,7 +19,7 @@ models: dict[str, Model] = {
 
 def main() -> None:
 
-    logo()
+    # logo()
 
     a: str = select_analysis()
     m: Model = models[a]
@@ -35,7 +35,9 @@ def main() -> None:
     m.set_explanatory(x, df)
     m.set_response(y, df)
 
-    m.eda(df)
+    x, y = m.clean(df)
+
+    m.eda(x, y)
 
 
 if __name__ == "__main__":

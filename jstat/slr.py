@@ -1,8 +1,9 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from jstat.model import Regression
 import pandas as pd
 import numpy as np
 from jstat.eda import scatter, histogram
+from jstat.stat import standardize_arr
 
 
 @dataclass
@@ -16,7 +17,15 @@ class SimpleLinearRegression(Regression):
         assert (exp in dataset.columns)
         self.explanatory = exp
 
-    def eda(self, df) -> None:
-        scatter(df[self.explanatory], df[self.response])
-        histogram(df[self.explanatory])
-        histogram(df[self.response])
+    def eda(self, x, y) -> None:
+        scatter(x, y, label=f"{self.explanatory} vs {self.response}")
+        histogram(x)
+        histogram(y)
+
+    def clean(self, df):
+        df.dropna(inplace=True)
+        arr = np.array(
+            df[[self.explanatory, self.response]]
+            .values, dtype='float'
+        )
+        return arr[:, 0], arr[:, 1]
