@@ -19,3 +19,9 @@ class Regression(Model):
     def set_response(self, resp: str, df: pd.DataFrame):
         assert (resp in df.columns)
         self.response = resp
+
+    def check_normality(self):
+        # make plots and display summary stats
+        # to assess normality
+
+        return
