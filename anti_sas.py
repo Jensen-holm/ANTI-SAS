@@ -5,6 +5,7 @@ from jstat.efa import ExploratoryFactorAnalysis
 from jstat.slr import SimpleLinearRegression
 from jstat.mlr import MultipleLinearRegression
 from jstat.clust import ClusterAnalysis
+from assets.assets import logo
 
 
 models: dict[str, Model] = {
@@ -17,6 +18,9 @@ models: dict[str, Model] = {
 
 
 def main() -> None:
+
+    logo()
+
     a: str = select_analysis()
     m: Model = models[a]
 
