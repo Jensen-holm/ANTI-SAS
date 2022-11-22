@@ -3,7 +3,7 @@ from jstat.stat import impute_na, standardize_arr
 import numpy as np
 
 
-def scatter(x, y, x_lab="", y_lab="", w=25, h=15, label=""):
+def scatter(x, y, x_lab="", y_lab="", w=25, h=15, label="") -> None:
     fig = plotille.Figure()
     fig.width = w
     fig.height = h
@@ -16,24 +16,22 @@ def scatter(x, y, x_lab="", y_lab="", w=25, h=15, label=""):
     print(fig.show())
 
 
-def histogram(x, x_lab="", y_lab="", w=25, h=15, label=""):
+def histogram(x, x_lab="", y_lab="", w=25, h=15, label="") -> None:
     fig = plotille.Figure()
     fig.width = w
     fig.height = h
     fig.x_label = x_lab
     fig.y_label = y_lab
-    fig.histogram(x)
+    fig.histogram(x, bins=200)
     print(fig.show())
 
 
-def qq_plot(y, lab="", w=25, h=15):
+def qq_plot(y, lab="", w=25, h=15) -> None:
     x = standardize_arr(y)
     x.sort()
     x = [[i/len(x), v] for i, v in enumerate(x)]
-
     xaxis = [v[1] for v in x]
     yaxis = [v[0] for v in x]
-
     fig = plotille.Figure()
     fig.width = w
     fig.height = h
@@ -42,7 +40,6 @@ def qq_plot(y, lab="", w=25, h=15):
     fig.scatter(xaxis, yaxis, label=lab, lc="blue")
 
     # make the 45 degree line
-
     x = np.arange(
         min(xaxis),
         max(xaxis),
@@ -55,6 +52,9 @@ def qq_plot(y, lab="", w=25, h=15):
         (max(yaxis) - min(yaxis)) / len(yaxis)
     )
 
-    fig.plot(x, y, label="qq line", lc="red")
-
+    fig.plot(x, y, label="qq line", lc="red", interp="linear")
     print(fig.show(legend=True))
+
+
+def fitted_vs_residual():
+    pass
