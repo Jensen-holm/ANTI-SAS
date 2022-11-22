@@ -1,27 +1,25 @@
-from dataclasses import dataclass
-from jstat.model import Model
+from dataclasses import dataclass, field
+from jstat.model import Regression
 import pandas as pd
-from eda.eda import scatter, histogram
+import numpy as np
+from jstat.eda import scatter, histogram
 
 
 @dataclass
-class SimpleLinearRegression(Model):
+class SimpleLinearRegression(Regression):
     name: str = "Simple Linear Regression"
-    description: str = "Simple Linear Regression"
-    explanarory: str = ""
-    response: str = ""
+    description: str = "Describes the relationship between two quantitative variables"
+    explanatory: np.array = field(default_factory=lambda: np.array([]))
+    response: np.array = field(default_factory=lambda: np.array([]))
 
     def set_explanatory(self, exp: str, dataset: pd.DataFrame) -> None:
         assert (exp in dataset.columns)
-        self.explanarory = dataset[exp]
+        self.explanarory = np.array(dataset[exp])
 
-    def set_response(self, resp: str, dataset: pd.DataFrame) -> None:
-        assert (resp in dataset.columns)
-        self.response = resp
 
-    def scatter(self) -> None:
-        scatter(self.explanarory, self.response)
-
-    def histogram(self) -> None:
+    def eda(self) -> None:
+        scatter(self.explanatory, self.response)
         histogram(self.explanarory)
         histogram(self.response)
+
+

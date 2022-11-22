@@ -3,6 +3,18 @@ import pandas as pd
 import random
 
 
+def np_impute(x: np.array, repl = [None]):
+    """
+    takes in a numpy array and replaces every value that you specify in the
+    repl list that is in the array with the mean of the array
+    does so in place
+    """
+    mu: float = np.mean(x)
+    for i, j in enumerate(x):
+        if j in repl:
+            x[i] = mu
+
+
 def standardize_arr(arr: np.array) -> np.array:
     return (arr - arr.mean()) / arr.std()
 

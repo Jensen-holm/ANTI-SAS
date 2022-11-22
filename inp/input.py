@@ -39,7 +39,7 @@ def select_analysis() -> str:
 
 def get_file_path() -> str:
     while True:
-        p: str = input("Enter the file path to a csv -> ").strip()
+        p: str = input("Drag csv file -> ").strip()
         input_filter(p)
         if file_exists(p) and is_csv(p):
             return p

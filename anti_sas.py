@@ -30,9 +30,8 @@ def main() -> None:
 
     m.set_explanatory(x, df)
     m.set_response(y, df)
-    m.histogram()
-    m.scatter()
 
+    m.eda()
 
 
 if __name__ == "__main__":
