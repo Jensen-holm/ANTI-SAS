@@ -43,13 +43,17 @@ def qq_plot(y, lab="", w=25, h=15):
 
     # make the 45 degree line
 
-    
+    x = np.arange(
+        min(xaxis),
+        max(xaxis),
+        (max(xaxis) - min(xaxis)) / len(xaxis)
+    )
 
-    x = np.arange(min(xaxis), max(xaxis), (max(xaxis) - min(xaxis)) / len(xaxis))
-    y = np.arange(min(yaxis), max(yaxis), (max(yaxis) - min(yaxis)) / len(yaxis))
-
-    print(x)
-    print(y)
+    y = np.arange(
+        min(yaxis),
+        max(yaxis),
+        (max(yaxis) - min(yaxis)) / len(yaxis)
+    )
 
     fig.plot(x, y, label="qq line", lc="red")
 
