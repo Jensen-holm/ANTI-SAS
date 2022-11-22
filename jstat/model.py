@@ -18,3 +18,4 @@ class Model:
 class Regression(Model):
     def set_response(self, resp: str, df: pd.DataFrame):
         assert (resp in df.columns)
+        self.response = resp

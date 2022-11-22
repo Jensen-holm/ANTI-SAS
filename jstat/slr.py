@@ -9,17 +9,14 @@ from jstat.eda import scatter, histogram
 class SimpleLinearRegression(Regression):
     name: str = "Simple Linear Regression"
     description: str = "Describes the relationship between two quantitative variables"
-    explanatory: np.array = field(default_factory=lambda: np.array([]))
-    response: np.array = field(default_factory=lambda: np.array([]))
+    explanatory: str = ""
+    response: str = ""
 
     def set_explanatory(self, exp: str, dataset: pd.DataFrame) -> None:
         assert (exp in dataset.columns)
-        self.explanarory = np.array(dataset[exp])
+        self.explanatory = exp
 
-
-    def eda(self) -> None:
-        scatter(self.explanatory, self.response)
-        histogram(self.explanarory)
-        histogram(self.response)
-
-
+    def eda(self, df) -> None:
+        scatter(df[self.explanatory], df[self.response])
+        histogram(df[self.explanatory])
+        histogram(df[self.response])

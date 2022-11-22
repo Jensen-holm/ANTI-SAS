@@ -31,7 +31,7 @@ def main() -> None:
     m.set_explanatory(x, df)
     m.set_response(y, df)
 
-    m.eda()
+    m.eda(df)
 
 
 if __name__ == "__main__":

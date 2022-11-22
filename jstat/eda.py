@@ -1,32 +1,25 @@
 import plotille
-from jstat.stat import np_impute
+from jstat.stat import impute_na 
 
 
-def check_data(x, y):
-    if len(x) > len(y):
-        x = x[:len(y)]
-    elif len(y) > len(x):
-        y = y[:len(x)]
-    np_impute(x)
-    np_impute(y)
 
-
-def scatter(x, y, w=15, h=15, end=" "):
-    print(y)
-    print(len(x), len(y))
-    check_data(x, y)
-    print(len(x), len(y))
+def scatter(x, y, w=15, h=15):
+    impute_na(x)
+    impute_na(y)
     fig = plotille.Figure()
-    # may want to warn the user to remove outliers first
     fig.width = w
     fig.height = h
+    fig.set_y_limits(min_=min(y), max_=max(y))
+    fig.set_x_limits(min_=min(x), max_=max(x))
+    fig.color_mode = "byte"
     fig.scatter(x, y)
-    print(fig.show(legend=True), end=end)
+    print(fig.show(legend=True))
 
 
-def histogram(x, w=15, h=15, end=" "):
+def histogram(x, w=15, h=15):
+    impute_na(x)
     fig = plotille.Figure()
     fig.width = w
     fig.height = h
     fig.histogram(x)
-    print(fig.show(legend=True), end=end)
+    print(fig.show(legend=True))

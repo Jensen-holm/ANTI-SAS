@@ -3,7 +3,7 @@ import pandas as pd
 import random
 
 
-def np_impute(x: np.array, repl = [None]):
+def np_impute(x: np.array, repl=[None, "NA"]):
     """
     takes in a numpy array and replaces every value that you specify in the
     repl list that is in the array with the mean of the array
@@ -13,6 +13,13 @@ def np_impute(x: np.array, repl = [None]):
     for i, j in enumerate(x):
         if j in repl:
             x[i] = mu
+
+
+def impute_na(x):
+    if isinstance(x, np.ndarray):
+        np_impute
+    elif isinstance(x, pd.DataFrame):
+        x.fillna(np.mean(x), inplace=True)
 
 
 def standardize_arr(arr: np.array) -> np.array:
