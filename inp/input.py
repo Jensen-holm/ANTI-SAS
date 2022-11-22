@@ -73,5 +73,7 @@ def show_cols(df: pd.DataFrame) -> None:
 
 def choose_vars():
     x = input("Enter the independent variable -> ")
+    input_filter(x)
     y = input("Enter the dependent variable -> ")
+    input_filter(y)
     return x, y

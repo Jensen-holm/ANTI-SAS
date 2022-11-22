@@ -5,8 +5,6 @@ from jstat.efa import ExploratoryFactorAnalysis
 from jstat.slr import SimpleLinearRegression
 from jstat.mlr import MultipleLinearRegression
 from jstat.clust import ClusterAnalysis
-from eda.eda import scatter
-import numpy as np
 
 
 models: dict[str, Model] = {
@@ -30,7 +28,11 @@ def main() -> None:
 
     x, y = choose_vars()
 
-    scatter(x, y, df)
+    m.set_explanatory(x, df)
+    m.set_response(y, df)
+    m.histogram()
+    m.scatter()
+
 
 
 if __name__ == "__main__":
